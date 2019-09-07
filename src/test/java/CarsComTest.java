@@ -93,11 +93,11 @@ public class CarsComTest {
 
         ModelComparePage modelComparePage = new ModelComparePage();
         assertTrue(modelComparePage.isDisplayedForCar(firstCarMake, firstCarModel, firstCarYear), "This in not the model compare page for the first car");
-        modelComparePage.addAnotherCar();
+        modelComparePage.clickOnAddAnotherCar();
         modelComparePage.getSideBySideCompareMenu().chooseOption(make, secondCarMake);
         modelComparePage.getSideBySideCompareMenu().chooseOption(model, secondCarModel);
         modelComparePage.getSideBySideCompareMenu().chooseOption(year, secondCarYear);
-        modelComparePage.getSideBySideCompareMenu().addAnotherCar(secondCarMake, secondCarModel, secondCarYear);
+        modelComparePage.getSideBySideCompareMenu().addAnotherCar();
         assertTrue(modelComparePage.isDisplayedForCar(secondCarMake, secondCarModel, secondCarYear), "This in not the model compare page for the second car");
         String readEngineForFirstCar = modelComparePage.getValueForCar(engine, 1);
         String readEngineForSecondCar = modelComparePage.getValueForCar(engine, 2);
