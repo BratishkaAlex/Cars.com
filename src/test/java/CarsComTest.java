@@ -16,6 +16,12 @@ import static org.testng.Assert.assertTrue;
 
 public class CarsComTest {
 
+    private final String make = "make";
+    private final String model = "model";
+    private final String year = "year";
+    private final String engine = "Engine";
+    private final String transmission = "Transmission";
+
     @BeforeTest
     public void setUpBrowser() {
         new LoggerUtil(this.getClass().getName());
@@ -38,9 +44,9 @@ public class CarsComTest {
 
         ResearchPage researchPage = new ResearchPage();
         assertTrue(researchPage.getSelectCarMenu().isDisplayed(), "This is not the research page");
-        String firstCarMake = researchPage.getSelectCarMenu().chooseRandomOption("make");
-        String firstCarModel = researchPage.getSelectCarMenu().chooseRandomOption("model");
-        String firstCarYear = researchPage.getSelectCarMenu().chooseRandomOption("year");
+        String firstCarMake = researchPage.getSelectCarMenu().chooseRandomOption(make);
+        String firstCarModel = researchPage.getSelectCarMenu().chooseRandomOption(model);
+        String firstCarYear = researchPage.getSelectCarMenu().chooseRandomOption(year);
         researchPage.getSelectCarMenu().searchCar();
 
         CarPage carPage = new CarPage();
@@ -49,8 +55,8 @@ public class CarsComTest {
 
         CompareTrimsPage compareTrimsPage = new CompareTrimsPage();
         assertTrue(compareTrimsPage.isCompareTrimsPage(firstCarMake, firstCarModel, firstCarYear), "This is note hte compare trims page for the first car");
-        String firstCarEngine = compareTrimsPage.getCharacteristic("Engine");
-        String firstCarTrans = compareTrimsPage.getCharacteristic("Trans");
+        String firstCarEngine = compareTrimsPage.getCharacteristic(engine);
+        String firstCarTrans = compareTrimsPage.getCharacteristic(transmission.substring(0, 5));
         compareTrimsPage.getNavigationMenu().navigateToMainPage();
 
         HomePage secondInstance = new HomePage();
@@ -59,9 +65,9 @@ public class CarsComTest {
 
         ResearchPage secondResearchPage = new ResearchPage();
         assertTrue(secondResearchPage.getSelectCarMenu().isDisplayed(), "This is not the research page");
-        String secondCarMake = secondResearchPage.getSelectCarMenu().chooseRandomOption("make");
-        String secondCarModel = secondResearchPage.getSelectCarMenu().chooseRandomOption("model");
-        String secondCarYear = secondResearchPage.getSelectCarMenu().chooseRandomOption("year");
+        String secondCarMake = secondResearchPage.getSelectCarMenu().chooseRandomOption(make);
+        String secondCarModel = secondResearchPage.getSelectCarMenu().chooseRandomOption(model);
+        String secondCarYear = secondResearchPage.getSelectCarMenu().chooseRandomOption(year);
         secondResearchPage.getSelectCarMenu().searchCar();
 
         CarPage secondCarPage = new CarPage();
@@ -70,8 +76,8 @@ public class CarsComTest {
 
         CompareTrimsPage secondCompareTrimsPage = new CompareTrimsPage();
         assertTrue(secondCompareTrimsPage.isCompareTrimsPage(secondCarMake, secondCarModel, secondCarYear), "This is note hte compare trims page for the second car");
-        String secondCarEngine = secondCompareTrimsPage.getCharacteristic("Engine");
-        String secondCarTrans = secondCompareTrimsPage.getCharacteristic("Trans");
+        String secondCarEngine = secondCompareTrimsPage.getCharacteristic(engine);
+        String secondCarTrans = secondCompareTrimsPage.getCharacteristic(transmission.substring(0, 5));
         secondCompareTrimsPage.getNavigationMenu().navigateToResearch();
 
         ResearchPage thirdResearchPage = new ResearchPage();
@@ -80,23 +86,23 @@ public class CarsComTest {
 
         CompareSideBySidePage compareSideBySidePage = new CompareSideBySidePage();
         assertTrue(compareSideBySidePage.isCompareSBSPage(), "This in not the compare side by side page");
-        compareSideBySidePage.getSideBySideCompareMenu().chooseOption("make", firstCarMake);
-        compareSideBySidePage.getSideBySideCompareMenu().chooseOption("model", firstCarModel);
-        compareSideBySidePage.getSideBySideCompareMenu().chooseOption("year", firstCarYear);
+        compareSideBySidePage.getSideBySideCompareMenu().chooseOption(make, firstCarMake);
+        compareSideBySidePage.getSideBySideCompareMenu().chooseOption(model, firstCarModel);
+        compareSideBySidePage.getSideBySideCompareMenu().chooseOption(year, firstCarYear);
         compareSideBySidePage.getSideBySideCompareMenu().submitCar();
 
         ModelComparePage modelComparePage = new ModelComparePage();
         assertTrue(modelComparePage.isDisplayedForCar(firstCarMake, firstCarModel, firstCarYear), "This in not the model compare page for the first car");
         modelComparePage.addAnotherCar();
-        modelComparePage.getSideBySideCompareMenu().chooseOption("make", secondCarMake);
-        modelComparePage.getSideBySideCompareMenu().chooseOption("model", secondCarModel);
-        modelComparePage.getSideBySideCompareMenu().chooseOption("year", secondCarYear);
+        modelComparePage.getSideBySideCompareMenu().chooseOption(make, secondCarMake);
+        modelComparePage.getSideBySideCompareMenu().chooseOption(model, secondCarModel);
+        modelComparePage.getSideBySideCompareMenu().chooseOption(year, secondCarYear);
         modelComparePage.getSideBySideCompareMenu().addAnotherCar(secondCarMake, secondCarModel, secondCarYear);
         assertTrue(modelComparePage.isDisplayedForCar(secondCarMake, secondCarModel, secondCarYear), "This in not the model compare page for the second car");
-        String readEngineForFirstCar = modelComparePage.getValueForCar("Engine", 1);
-        String readEngineForSecondCar = modelComparePage.getValueForCar("Engine", 2);
-        String readTransmissionForFirstCar = modelComparePage.getValueForCar("Transmission", 1);
-        String readTransmissionForSecondCar = modelComparePage.getValueForCar("Transmission", 2);
+        String readEngineForFirstCar = modelComparePage.getValueForCar(engine, 1);
+        String readEngineForSecondCar = modelComparePage.getValueForCar(engine, 2);
+        String readTransmissionForFirstCar = modelComparePage.getValueForCar(transmission, 1);
+        String readTransmissionForSecondCar = modelComparePage.getValueForCar(transmission, 2);
         assertTrue(readEngineForFirstCar.toLowerCase().contains(firstCarEngine.toLowerCase()), "Engines for the first car are not the same");
         assertTrue(readEngineForSecondCar.toLowerCase().contains(secondCarEngine.toLowerCase()), "Engines for the second car are not the same");
         assertTrue(readTransmissionForFirstCar.toLowerCase().contains(firstCarTrans.toLowerCase()), "Transmissions for the first car are not the same");

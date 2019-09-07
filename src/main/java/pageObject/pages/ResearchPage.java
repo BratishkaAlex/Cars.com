@@ -6,7 +6,7 @@ import pageObject.forms.SelectCarMenu;
 
 public class ResearchPage {
     private SelectCarMenu selectCarMenu;
-    private By sbsCompareLoc = By.cssSelector("._1-_TM");
+    private By sbsCompareLoc = By.cssSelector("._1dRAW");
 
     public ResearchPage() {
         selectCarMenu = new SelectCarMenu();
