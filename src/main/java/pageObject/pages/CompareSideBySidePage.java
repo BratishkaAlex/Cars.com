@@ -10,7 +10,6 @@ public class CompareSideBySidePage {
 
     public CompareSideBySidePage() {
         sideBySideCompareMenu = new SideBySideCompareMenu();
-
     }
 
     public SideBySideCompareMenu getSideBySideCompareMenu() {

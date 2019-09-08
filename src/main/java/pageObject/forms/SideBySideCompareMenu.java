@@ -18,7 +18,7 @@ public class SideBySideCompareMenu {
         return new Option(By.xpath(String.format(pattern, option, value)));
     }
 
-    public void chooseOption(String option, String value) {
+    private void chooseOption(String option, String value) {
         getOption(option, value).click();
     }
 

@@ -12,7 +12,6 @@ public class ModelComparePage {
     private SideBySideCompareMenu sideBySideCompareMenu;
     private final String patternForCar = "//h4[contains(text(), '%s') and contains(text(), '%s') and contains(text(), '%s')]";
     private By addCarBtnLoc = By.cssSelector(".add-car-icon");
-    private By mainLabelLoc = By.cssSelector(".compare-subhead-h2");
     private final String patternForValues = "(//cars-compare-compare-info[@header = '%s']//div[@ng-switch-when='simple-list'])[%d]";
 
     public ModelComparePage() {

@@ -27,7 +27,7 @@ public class SelectCarMenu {
         return new Option(getListElements(optionsLoc).get(getRandomInt(getListElements(optionsLoc).size())), optionsLoc);
     }
 
-    public String chooseRandomOption(String name) {
+    private String chooseRandomOption(String name) {
         Option randomOption = getRandomOption(name);
         randomOption.click();
         return randomOption.getText();
