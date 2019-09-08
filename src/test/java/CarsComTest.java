@@ -45,10 +45,7 @@ public class CarsComTest {
 
         ResearchPage researchPage = new ResearchPage();
         assertTrue(researchPage.getSelectCarMenu().isDisplayed(), "This is not the research page");
-        Car firstCar = new Car();
-        firstCar.setMake(researchPage.getSelectCarMenu().chooseRandomOption(make));
-        firstCar.setModel(researchPage.getSelectCarMenu().chooseRandomOption(model));
-        firstCar.setYear(researchPage.getSelectCarMenu().chooseRandomOption(year));
+        Car firstCar = researchPage.getSelectCarMenu().chooseRandomCar();
         researchPage.getSelectCarMenu().searchCar();
 
         CarPage carPage = new CarPage();
@@ -68,10 +65,7 @@ public class CarsComTest {
 
         ResearchPage secondResearchPage = new ResearchPage();
         assertTrue(secondResearchPage.getSelectCarMenu().isDisplayed(), "This is not the research page");
-        Car secondCar = new Car();
-        secondCar.setMake(secondResearchPage.getSelectCarMenu().chooseRandomOption(make));
-        secondCar.setModel(secondResearchPage.getSelectCarMenu().chooseRandomOption(model));
-        secondCar.setYear(secondResearchPage.getSelectCarMenu().chooseRandomOption(year));
+        Car secondCar = secondResearchPage.getSelectCarMenu().chooseRandomCar();
         secondResearchPage.getSelectCarMenu().searchCar();
 
         CarPage secondCarPage = new CarPage();
@@ -91,17 +85,13 @@ public class CarsComTest {
 
         CompareSideBySidePage compareSideBySidePage = new CompareSideBySidePage();
         assertTrue(compareSideBySidePage.isCompareSBSPage(), "This in not the compare side by side page");
-        compareSideBySidePage.getSideBySideCompareMenu().chooseOption(make, firstCar.getMake());
-        compareSideBySidePage.getSideBySideCompareMenu().chooseOption(model, firstCar.getModel());
-        compareSideBySidePage.getSideBySideCompareMenu().chooseOption(year, firstCar.getYear());
+        compareSideBySidePage.getSideBySideCompareMenu().chooseCar(firstCar);
         compareSideBySidePage.getSideBySideCompareMenu().submitCar();
 
         ModelComparePage modelComparePage = new ModelComparePage();
         assertTrue(modelComparePage.isDisplayedForCar(firstCar.getMake(), firstCar.getModel(), firstCar.getYear()), "This in not the model compare page for the first car");
         modelComparePage.clickOnAddAnotherCar();
-        modelComparePage.getSideBySideCompareMenu().chooseOption(make, secondCar.getMake());
-        modelComparePage.getSideBySideCompareMenu().chooseOption(model, secondCar.getModel());
-        modelComparePage.getSideBySideCompareMenu().chooseOption(year, secondCar.getYear());
+        modelComparePage.getSideBySideCompareMenu().chooseCar(secondCar);
         modelComparePage.getSideBySideCompareMenu().addAnotherCar();
         assertTrue(modelComparePage.isDisplayedForCar(secondCar.getMake(), secondCar.getModel(), secondCar.getYear()), "This in not the model compare page for the second car");
         String readEngineForFirstCar = modelComparePage.getValueForCar(engine, 1);

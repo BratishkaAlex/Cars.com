@@ -7,6 +7,11 @@ public class Car {
     private String engine = "";
     private String transmission = "";
 
+    public Car(String make, String model, String year) {
+        this.make = make;
+        this.model = model;
+        this.year = year;
+    }
 
     public String getMake() {
         return make;
