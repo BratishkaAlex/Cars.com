@@ -17,9 +17,6 @@ import static org.testng.Assert.assertTrue;
 
 public class CarsComTest {
 
-    private final String make = "make";
-    private final String model = "model";
-    private final String year = "year";
     private final String engine = "Engine";
     private final String transmission = "Transmission";
 
