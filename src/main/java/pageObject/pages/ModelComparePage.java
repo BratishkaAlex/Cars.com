@@ -1,5 +1,6 @@
 package pageObject.pages;
 
+import appClasses.Car;
 import framework.elements.Button;
 import framework.elements.Label;
 import framework.elements.Link;
@@ -26,9 +27,9 @@ public class ModelComparePage {
         return new Link(By.xpath(String.format(patternForCar, make, model, year)));
     }
 
-    public boolean isDisplayedForCar(String make, String model, String year) {
-        Waiter.waitForClickAble(By.xpath(String.format(patternForCar, make, model, year)));
-        return getLinkForAddedCar(make, model, year).isDisplayed();
+    public boolean isDisplayedForCar(Car car) {
+        Waiter.waitForClickAble(By.xpath(String.format(patternForCar, car.getMake(), car.getModel(), car.getYear())));
+        return getLinkForAddedCar(car.getMake(), car.getModel(), car.getYear()).isDisplayed();
     }
 
     private Button getAddNewCarButton() {

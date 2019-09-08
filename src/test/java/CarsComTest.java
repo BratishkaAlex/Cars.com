@@ -49,11 +49,11 @@ public class CarsComTest {
         researchPage.getSelectCarMenu().searchCar();
 
         CarPage carPage = new CarPage();
-        assertTrue(carPage.isChosenCar(firstCar.getMake(), firstCar.getModel(), firstCar.getYear()), "This is not the page for first chosen car");
+        assertTrue(carPage.isChosenCar(firstCar), "This is not the page for first chosen car");
         carPage.clickOnCompareTrims();
 
         CompareTrimsPage compareTrimsPage = new CompareTrimsPage();
-        assertTrue(compareTrimsPage.isCompareTrimsPage(firstCar.getMake(), firstCar.getModel(), firstCar.getYear()), "This is not the compare trims page for the first car");
+        assertTrue(compareTrimsPage.isCompareTrimsPage(firstCar), "This is not the compare trims page for the first car");
         firstCar.setEngine(compareTrimsPage.getCharacteristic(engine));
         firstCar.setTransmission(compareTrimsPage.getCharacteristic(transmission.substring(0, 5)));
         assertTrue(firstCar.areEngineAndTransSaved(), "Engine and trans did not saved for the first car");
@@ -69,11 +69,11 @@ public class CarsComTest {
         secondResearchPage.getSelectCarMenu().searchCar();
 
         CarPage secondCarPage = new CarPage();
-        assertTrue(secondCarPage.isChosenCar(secondCar.getMake(), secondCar.getModel(), secondCar.getYear()), "This is not the page for second chosen car");
+        assertTrue(secondCarPage.isChosenCar(secondCar), "This is not the page for second chosen car");
         secondCarPage.clickOnCompareTrims();
 
         CompareTrimsPage secondCompareTrimsPage = new CompareTrimsPage();
-        assertTrue(secondCompareTrimsPage.isCompareTrimsPage(secondCar.getMake(), secondCar.getModel(), secondCar.getYear()), "This is note hte compare trims page for the second car");
+        assertTrue(secondCompareTrimsPage.isCompareTrimsPage(secondCar), "This is note hte compare trims page for the second car");
         secondCar.setEngine(secondCompareTrimsPage.getCharacteristic(engine));
         secondCar.setTransmission(secondCompareTrimsPage.getCharacteristic(transmission.substring(0, 5)));
         assertTrue(secondCar.areEngineAndTransSaved(), "Engine and trans did not saved for the second car");
@@ -89,11 +89,11 @@ public class CarsComTest {
         compareSideBySidePage.getSideBySideCompareMenu().submitCar();
 
         ModelComparePage modelComparePage = new ModelComparePage();
-        assertTrue(modelComparePage.isDisplayedForCar(firstCar.getMake(), firstCar.getModel(), firstCar.getYear()), "This in not the model compare page for the first car");
+        assertTrue(modelComparePage.isDisplayedForCar(firstCar), "This in not the model compare page for the first car");
         modelComparePage.clickOnAddAnotherCar();
         modelComparePage.getSideBySideCompareMenu().chooseCar(secondCar);
         modelComparePage.getSideBySideCompareMenu().addAnotherCar();
-        assertTrue(modelComparePage.isDisplayedForCar(secondCar.getMake(), secondCar.getModel(), secondCar.getYear()), "This in not the model compare page for the second car");
+        assertTrue(modelComparePage.isDisplayedForCar(secondCar), "This in not the model compare page for the second car");
         String readEngineForFirstCar = modelComparePage.getValueForCar(engine, 1);
         String readEngineForSecondCar = modelComparePage.getValueForCar(engine, 2);
         String readTransmissionForFirstCar = modelComparePage.getValueForCar(transmission, 1);

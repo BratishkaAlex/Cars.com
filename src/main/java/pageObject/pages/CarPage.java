@@ -1,5 +1,6 @@
 package pageObject.pages;
 
+import appClasses.Car;
 import framework.elements.Label;
 import framework.elements.Link;
 import org.openqa.selenium.By;
@@ -13,10 +14,10 @@ public class CarPage {
         return new Label(labelForCar);
     }
 
-    public boolean isChosenCar(String make, String model, String year) {
+    public boolean isChosenCar(Car car) {
         String label = getLabelForCar().getText().toLowerCase();
-        return (label.contains(make.toLowerCase()) && label.contains(model.toLowerCase())
-            && label.contains(year.toLowerCase()));
+        return (label.contains(car.getMake().toLowerCase()) && label.contains(car.getModel().toLowerCase())
+            && label.contains(car.getYear().toLowerCase()));
     }
 
     private Link getCompareTrimsLink() {

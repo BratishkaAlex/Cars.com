@@ -1,5 +1,6 @@
 package pageObject.pages;
 
+import appClasses.Car;
 import framework.elements.Label;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -22,10 +23,10 @@ public class CompareTrimsPage {
         return navigationMenu;
     }
 
-    public boolean isCompareTrimsPage(String make, String model, String year) {
+    public boolean isCompareTrimsPage(Car car) {
         String title = new Label(trimPageTitleLoc).getText().toLowerCase();
-        return (title.contains(make.toLowerCase()) && title.contains(model.toLowerCase())
-            && title.contains(year.toLowerCase()) && title.contains("trim"));
+        return (title.contains(car.getMake().toLowerCase()) && title.contains(car.getModel().toLowerCase())
+            && title.contains(car.getYear().toLowerCase()) && title.contains("trim"));
     }
 
     private Label getRow(By loc) {
