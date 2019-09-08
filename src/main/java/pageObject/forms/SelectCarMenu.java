@@ -11,9 +11,6 @@ import static appUtils.Utils.getRandomInt;
 public class SelectCarMenu {
     private By selectFormLoc = By.xpath("//div[@class='_1DN8b']");
     private final String pattern = "//select[contains(@name,'%s')]//option[not(@value='0')]";
-    private By allMakesLoc = By.xpath("//select[@name='makeId']//option[not(@value='0')]");
-    private By allModelsLoc = By.xpath("//select[@name='modelId']//option[not(@value='0')]");
-    private By allYearsLoc = By.xpath("//select[@name='year']//option[not(@value='0')]");
     private By submitBtnLoc = By.cssSelector("._3iP3L");
 
     public boolean isDisplayed() {
