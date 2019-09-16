@@ -1,6 +1,6 @@
-package pageObject.pages;
+package app.pageObject.pages;
 
-import appClasses.Car;
+import app.appClasses.Car;
 import framework.elements.Label;
 import framework.elements.Link;
 import framework.utils.Waiter;

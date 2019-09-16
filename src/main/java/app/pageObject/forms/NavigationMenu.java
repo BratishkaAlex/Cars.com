@@ -1,4 +1,4 @@
-package pageObject.forms;
+package app.pageObject.forms;
 
 import framework.elements.Button;
 import org.openqa.selenium.By;

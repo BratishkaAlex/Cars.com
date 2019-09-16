@@ -1,6 +1,6 @@
-package pageObject.forms;
+package app.pageObject.forms;
 
-import appClasses.Car;
+import app.appClasses.Car;
 import framework.elements.Button;
 import framework.elements.Option;
 import org.openqa.selenium.By;

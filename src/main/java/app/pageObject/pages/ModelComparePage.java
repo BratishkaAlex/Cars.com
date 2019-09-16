@@ -1,18 +1,20 @@
-package pageObject.pages;
+package app.pageObject.pages;
 
-import appClasses.Car;
+import app.appClasses.Car;
+import app.pageObject.forms.SideBySideCompareMenu;
 import framework.elements.Button;
 import framework.elements.Label;
-import framework.elements.Link;
 import framework.utils.Waiter;
 import org.openqa.selenium.By;
-import pageObject.forms.SideBySideCompareMenu;
 
 public class ModelComparePage {
-    private final String PATTERN_FOR_CARS = "//h4[contains(text(), '%s') and contains(text(), '%s') and contains(text(), '%s')]";
+    private final String PATTERN_FOR_CARS = "//h4[contains(text(), '%s')]";
+    private final String PATTERN_FOR_FULL_CAR_NAME = "(//h4[@class='listing-name'])[%s]";
     private final String PATTERN_FOR_VALUES = "(//cars-compare-compare-info[@header = '%s']//div[@ng-switch-when='simple-list'])[%d]";
     private SideBySideCompareMenu sideBySideCompareMenu;
     private By addCarBtnLoc = By.cssSelector(".add-car-icon");
+    private final String ENGINE = "Engine";
+    private final String TRANSMISSION = "Transmission";
 
 
     public ModelComparePage() {
@@ -23,13 +25,24 @@ public class ModelComparePage {
         return sideBySideCompareMenu;
     }
 
-    private Link getLinkForAddedCar(String make, String model, String year) {
-        return new Link(By.xpath(String.format(PATTERN_FOR_CARS, make, model, year)), "Link with name of added car");
+    public boolean isDisplayedForCar(Car car, int numberOfCar) {
+        Waiter.waitForClickAble(By.xpath(String.format(PATTERN_FOR_CARS, car.getFullName())));
+        return getAddedCar(numberOfCar).equals(car);
     }
 
-    public boolean isDisplayedForCar(Car car) {
-        Waiter.waitForClickAble(By.xpath(String.format(PATTERN_FOR_CARS, car.getMake(), car.getModel(), car.getYear())));
-        return getLinkForAddedCar(car.getMake(), car.getModel(), car.getYear()).isDisplayed();
+    private Label getLabelForCar(int number) {
+        return new Label(By.xpath(String.format(PATTERN_FOR_FULL_CAR_NAME, number)), "Label with fullname of first car");
+    }
+
+    public String getFullNameOfCar(int number) {
+        return getLabelForCar(number).getText();
+    }
+
+    public Car getAddedCar(int number) {
+        Car car = new Car(getFullNameOfCar(number));
+        car.setEngine(getValueForCar(ENGINE, number));
+        car.setTransmission(getValueForCar(TRANSMISSION, number));
+        return car;
     }
 
     private Button getAddNewCarButton() {

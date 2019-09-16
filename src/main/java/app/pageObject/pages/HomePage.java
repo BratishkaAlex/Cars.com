@@ -1,8 +1,8 @@
-package pageObject.pages;
+package app.pageObject.pages;
 
+import app.pageObject.forms.NavigationMenu;
 import framework.elements.Label;
 import org.openqa.selenium.By;
-import pageObject.forms.NavigationMenu;
 
 public class HomePage {
     private NavigationMenu navigationMenu;

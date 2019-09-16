@@ -1,8 +1,8 @@
-package pageObject.pages;
+package app.pageObject.pages;
 
+import app.pageObject.forms.SideBySideCompareMenu;
 import framework.elements.Label;
 import org.openqa.selenium.By;
-import pageObject.forms.SideBySideCompareMenu;
 
 public class CompareSideBySidePage {
     private SideBySideCompareMenu sideBySideCompareMenu;

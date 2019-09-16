@@ -1,12 +1,12 @@
-package pageObject.forms;
+package app.pageObject.forms;
 
-import appClasses.Car;
+import app.appClasses.Car;
 import framework.elements.Button;
 import framework.elements.Label;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import static framework.elements.BaseElement.getListElements;
+import static framework.base.BaseElement.getListElements;
 import static framework.utils.MathUtils.getRandomInt;
 
 public class SelectCarMenu {

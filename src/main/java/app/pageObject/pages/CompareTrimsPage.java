@@ -1,10 +1,10 @@
-package pageObject.pages;
+package app.pageObject.pages;
 
-import appClasses.Car;
+import app.appClasses.Car;
+import app.pageObject.forms.NavigationMenu;
 import framework.elements.Label;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import pageObject.forms.NavigationMenu;
 
 import java.util.List;
 
@@ -34,7 +34,7 @@ public class CompareTrimsPage {
     }
 
     private List<WebElement> getLabelsFromRow(By rowLoc, By labelsLoc, String rowsName) {
-        return getRow(rowLoc, rowsName).findElements(labelsLoc);
+        return getRow(rowLoc, rowsName).findElementsFromCurrent(labelsLoc);
     }
 
     private int getNumberOfField(String name) {

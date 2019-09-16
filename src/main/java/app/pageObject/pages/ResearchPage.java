@@ -1,8 +1,8 @@
-package pageObject.pages;
+package app.pageObject.pages;
 
+import app.pageObject.forms.SelectCarMenu;
 import framework.elements.Link;
 import org.openqa.selenium.By;
-import pageObject.forms.SelectCarMenu;
 
 public class ResearchPage {
     private SelectCarMenu selectCarMenu;

@@ -1,4 +1,4 @@
-package framework.elements;
+package framework.base;
 
 import framework.browser.Browser;
 import org.openqa.selenium.By;
@@ -34,7 +34,12 @@ public abstract class BaseElement {
         return webElement.getText();
     }
 
-    public List<WebElement> findElements(By loc) {
+    public void click() {
+        LOGGER.info(String.format("Click on %s", name));
+        getWebElement().click();
+    }
+
+    public List<WebElement> findElementsFromCurrent(By loc) {
         return webElement.findElements(loc);
     }
 
