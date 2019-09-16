@@ -24,29 +24,30 @@ public class CompareTrimsPage {
     }
 
     public boolean isCompareTrimsPage(Car car) {
-        String title = new Label(trimPageTitleLoc).getText().toLowerCase();
+        String title = new Label(trimPageTitleLoc, "Label for compare trims page").getText().toLowerCase();
         return (title.contains(car.getMake().toLowerCase()) && title.contains(car.getModel().toLowerCase())
-            && title.contains(car.getYear().toLowerCase()) && title.contains("trim"));
+                && title.contains(car.getYear().toLowerCase()) && title.contains("trim"));
     }
 
-    private Label getRow(By loc) {
-        return new Label(loc);
+    private Label getRow(By loc, String rowsName) {
+        return new Label(loc, String.format("Row of labels for %s", rowsName));
     }
 
-    private List<WebElement> getLabelsFromRow(By rowLoc, By labelsLoc) {
-        return getRow(rowLoc).findElements(labelsLoc);
+    private List<WebElement> getLabelsFromRow(By rowLoc, By labelsLoc, String rowsName) {
+        return getRow(rowLoc, rowsName).findElements(labelsLoc);
     }
 
     private int getNumberOfField(String name) {
-        for (int i = 0; i < getLabelsFromRow(labelsRowLoc, listLabelsLoc).size(); i++) {
-            if (getLabelsFromRow(labelsRowLoc, listLabelsLoc).get(i).getText().equals(name)) {
+        List<WebElement> row = getLabelsFromRow(labelsRowLoc, listLabelsLoc, "Trim card fields");
+        for (int i = 0; i < row.size(); i++) {
+            if (row.get(i).getText().equals(name)) {
                 return i;
             }
         }
-        throw new IllegalStateException("There is no such field");
+        throw new IllegalArgumentException("There is no such field");
     }
 
     public String getCharacteristic(String name) {
-        return getLabelsFromRow(trimCardLoc, listLabelsLoc).get(getNumberOfField(name)).getText();
+        return getLabelsFromRow(trimCardLoc, listLabelsLoc, "Trim card values").get(getNumberOfField(name)).getText();
     }
 }

@@ -9,32 +9,29 @@ import java.util.List;
 import static framework.utils.LoggerUtil.LOGGER;
 
 public abstract class BaseElement {
-    private String name = this.getClass().getSimpleName();
+    private String name;
     private By loc;
     private WebElement webElement;
 
-    public BaseElement(By loc) {
-        LOGGER.info(String.format("Creating instance of custom %s", name));
+    public BaseElement(By loc, String name) {
+        LOGGER.info(String.format("Creating instance of %s", name));
         this.loc = loc;
+        this.name = name;
         this.webElement = Browser.getDriver().findElement(loc);
     }
 
-    protected void setWebElement(WebElement webElement) {
-        this.webElement = webElement;
+    public static List<WebElement> getListElements(By loc) {
+        return Browser.getDriver().findElements(loc);
     }
 
     public boolean isDisplayed() {
-        LOGGER.info(String.format("Checking displaying of custom %s", name));
+        LOGGER.info(String.format("Checking displaying of %s", name));
         return webElement.isDisplayed();
     }
 
     public String getText() {
-        LOGGER.info(String.format("Getting text of custom %s", name));
+        LOGGER.info(String.format("Getting text of %s", name));
         return webElement.getText();
-    }
-
-    public WebElement findElement(By loc) {
-        return webElement.findElement(loc);
     }
 
     public List<WebElement> findElements(By loc) {
@@ -44,9 +41,4 @@ public abstract class BaseElement {
     protected WebElement getWebElement() {
         return this.webElement;
     }
-
-    protected By getLoc() {
-        return this.loc;
-    }
-
 }

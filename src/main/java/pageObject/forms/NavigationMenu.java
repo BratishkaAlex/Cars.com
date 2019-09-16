@@ -8,11 +8,11 @@ public class NavigationMenu {
     private By homeBthLoc = By.xpath("//a[@data-linkname='header-home']");
 
     private Button getResearchButton() {
-        return new Button(researchBtnLoc);
+        return new Button(researchBtnLoc, "Research button");
     }
 
     private Button getHomeButton() {
-        return new Button(homeBthLoc);
+        return new Button(homeBthLoc, "Main page button");
     }
 
     public void navigateToResearch() {

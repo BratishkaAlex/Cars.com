@@ -17,7 +17,7 @@ public class HomePage {
     }
 
     private Label getLabelForTrending() {
-        return new Label(trendingLoc);
+        return new Label(trendingLoc, "Label for trending cars");
     }
 
     public NavigationMenu getNavigationMenu() {

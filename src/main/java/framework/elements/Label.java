@@ -3,7 +3,7 @@ package framework.elements;
 import org.openqa.selenium.By;
 
 public class Label extends BaseElement {
-    public Label(By loc) {
-        super(loc);
+    public Label(By loc, String name) {
+        super(loc, name);
     }
 }

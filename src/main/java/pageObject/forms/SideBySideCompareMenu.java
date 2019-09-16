@@ -6,16 +6,16 @@ import framework.elements.Option;
 import org.openqa.selenium.By;
 
 public class SideBySideCompareMenu {
-    private final String make = "make";
-    private final String model = "model";
-    private final String year = "year";
-    private final String pattern = "//select[@id='%s-dropdown']//option[text()='%s']";
+    private final String MAKE = "make";
+    private final String MODEL = "model";
+    private final String YEAR = "year";
+    private final String PATTERN = "//select[@id='%s-dropdown']//option[text()='%s']";
     private By submitBtnLoc = By.cssSelector(".done-button");
     private By addAnotherCar = By.xpath("//button[@data-linkname='add-car-select']");
 
 
     private Option getOption(String option, String value) {
-        return new Option(By.xpath(String.format(pattern, option, value)));
+        return new Option(By.xpath(String.format(PATTERN, option, value)), String.format("Option for option '%s' for chosen car", option));
     }
 
     private void chooseOption(String option, String value) {
@@ -23,13 +23,13 @@ public class SideBySideCompareMenu {
     }
 
     public void chooseCar(Car car) {
-        chooseOption(make, car.getMake());
-        chooseOption(model, car.getModel());
-        chooseOption(year, car.getYear());
+        chooseOption(MAKE, car.getMake());
+        chooseOption(MODEL, car.getModel());
+        chooseOption(YEAR, car.getYear());
     }
 
     private Button getSubmitButton() {
-        return new Button(submitBtnLoc);
+        return new Button(submitBtnLoc, "Button for adding car to compare");
     }
 
     public void submitCar() {
@@ -37,7 +37,7 @@ public class SideBySideCompareMenu {
     }
 
     private Button getAddAnotherCarButton() {
-        return new Button(addAnotherCar);
+        return new Button(addAnotherCar, "Button for adding another car to compare");
     }
 
     public void addAnotherCar() {

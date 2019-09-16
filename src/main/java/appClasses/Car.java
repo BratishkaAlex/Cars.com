@@ -13,40 +13,26 @@ public class Car {
         this.year = year;
     }
 
-    public String getMake() {
-        return make;
+    public Car(Car car) {
+        this.make = car.getMake();
+        this.model = car.getModel();
+        this.year = car.getYear();
     }
 
-    public void setMake(String make) {
-        this.make = make;
+    public String getMake() {
+        return make;
     }
 
     public String getModel() {
         return model;
     }
 
-    public void setModel(String model) {
-        this.model = model;
-    }
-
     public String getYear() {
         return year;
     }
 
-    public void setYear(String year) {
-        this.year = year;
-    }
-
-    public String getEngine() {
-        return engine;
-    }
-
     public void setEngine(String engine) {
         this.engine = engine;
-    }
-
-    public String getTransmission() {
-        return transmission;
     }
 
     public void setTransmission(String transmission) {
@@ -57,4 +43,15 @@ public class Car {
         return !(engine.equals("") && transmission.equals(""));
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return make.equals(car.make) &&
+                model.equals(car.model) &&
+                year.equals(car.year) &&
+                (car.engine.contains(engine) || engine.contains(car.engine)) &&
+                (car.transmission.contains(transmission) || transmission.contains(car.transmission));
+    }
 }

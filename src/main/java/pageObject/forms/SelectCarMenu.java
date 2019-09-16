@@ -2,39 +2,39 @@ package pageObject.forms;
 
 import appClasses.Car;
 import framework.elements.Button;
-import framework.elements.Option;
+import framework.elements.Label;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
-import static appUtils.Utils.elementIsDisplayed;
-import static appUtils.Utils.getListElements;
-import static appUtils.Utils.getRandomInt;
+import static framework.elements.BaseElement.getListElements;
+import static framework.utils.MathUtils.getRandomInt;
 
 public class SelectCarMenu {
-    private final String make = "make";
-    private final String model = "model";
-    private final String year = "year";
-    private By selectFormLoc = By.xpath("//div[@class='_1DN8b']");
-    private final String pattern = "//select[contains(@name,'%s')]//option[not(@value='0')]";
+    private final String MAKE = "make";
+    private final String MODEL = "model";
+    private final String YEAR = "year";
+    private final String PATTERN = "//select[contains(@name,'%s')]//option[not(@value='0')]";
+    private By selectFormLoc = By.cssSelector(".oJ34o");
     private By submitBtnLoc = By.cssSelector("._3iP3L");
 
     public boolean isDisplayed() {
-        return elementIsDisplayed(selectFormLoc);
+        return new Label(selectFormLoc, "Label for research cars model").isDisplayed();
     }
 
 
-    private Option getRandomOption(String option) {
-        By optionsLoc = By.xpath(String.format(pattern, option));
-        return new Option(getListElements(optionsLoc).get(getRandomInt(getListElements(optionsLoc).size())), optionsLoc);
+    private WebElement getRandomOption(String option) {
+        By optionsLoc = By.xpath(String.format(PATTERN, option));
+        return getListElements(optionsLoc).get(getRandomInt(getListElements(optionsLoc).size()));
     }
 
     private String chooseRandomOption(String name) {
-        Option randomOption = getRandomOption(name);
+        WebElement randomOption = getRandomOption(name);
         randomOption.click();
         return randomOption.getText();
     }
 
     private Button getSubmitBtn() {
-        return new Button(submitBtnLoc);
+        return new Button(submitBtnLoc, "Search car button");
     }
 
     public void searchCar() {
@@ -42,6 +42,6 @@ public class SelectCarMenu {
     }
 
     public Car chooseRandomCar() {
-        return new Car(chooseRandomOption(make), chooseRandomOption(model), chooseRandomOption(year));
+        return new Car(chooseRandomOption(MAKE), chooseRandomOption(MODEL), chooseRandomOption(YEAR));
     }
 }

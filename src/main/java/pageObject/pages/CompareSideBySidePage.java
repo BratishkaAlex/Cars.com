@@ -1,12 +1,12 @@
 package pageObject.pages;
 
-import appUtils.Utils;
+import framework.elements.Label;
 import org.openqa.selenium.By;
 import pageObject.forms.SideBySideCompareMenu;
 
 public class CompareSideBySidePage {
     private SideBySideCompareMenu sideBySideCompareMenu;
-    private By chooseCarFormLoc = By.id("mainAddCarForm");
+    private By chooseCarFormLoc = By.cssSelector(".compare-head-h1-semi");
 
     public CompareSideBySidePage() {
         sideBySideCompareMenu = new SideBySideCompareMenu();
@@ -17,6 +17,6 @@ public class CompareSideBySidePage {
     }
 
     public boolean isCompareSBSPage() {
-        return Utils.elementIsDisplayed(chooseCarFormLoc);
+        return new Label(chooseCarFormLoc, "Label for side by side comparison").isDisplayed();
     }
 }

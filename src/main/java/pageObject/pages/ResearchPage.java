@@ -17,7 +17,7 @@ public class ResearchPage {
     }
 
     private Link getSBSCompareLink() {
-        return new Link(sbsCompareLoc);
+        return new Link(sbsCompareLoc, "Link to side by side compare page");
     }
 
     public void clickOnSideBySideCompare() {

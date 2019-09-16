@@ -9,10 +9,11 @@ import org.openqa.selenium.By;
 import pageObject.forms.SideBySideCompareMenu;
 
 public class ModelComparePage {
+    private final String PATTERN_FOR_CARS = "//h4[contains(text(), '%s') and contains(text(), '%s') and contains(text(), '%s')]";
+    private final String PATTERN_FOR_VALUES = "(//cars-compare-compare-info[@header = '%s']//div[@ng-switch-when='simple-list'])[%d]";
     private SideBySideCompareMenu sideBySideCompareMenu;
-    private final String patternForCar = "//h4[contains(text(), '%s') and contains(text(), '%s') and contains(text(), '%s')]";
     private By addCarBtnLoc = By.cssSelector(".add-car-icon");
-    private final String patternForValues = "(//cars-compare-compare-info[@header = '%s']//div[@ng-switch-when='simple-list'])[%d]";
+
 
     public ModelComparePage() {
         sideBySideCompareMenu = new SideBySideCompareMenu();
@@ -23,16 +24,16 @@ public class ModelComparePage {
     }
 
     private Link getLinkForAddedCar(String make, String model, String year) {
-        return new Link(By.xpath(String.format(patternForCar, make, model, year)));
+        return new Link(By.xpath(String.format(PATTERN_FOR_CARS, make, model, year)), "Link with name of added car");
     }
 
     public boolean isDisplayedForCar(Car car) {
-        Waiter.waitForClickAble(By.xpath(String.format(patternForCar, car.getMake(), car.getModel(), car.getYear())));
+        Waiter.waitForClickAble(By.xpath(String.format(PATTERN_FOR_CARS, car.getMake(), car.getModel(), car.getYear())));
         return getLinkForAddedCar(car.getMake(), car.getModel(), car.getYear()).isDisplayed();
     }
 
     private Button getAddNewCarButton() {
-        return new Button(addCarBtnLoc);
+        return new Button(addCarBtnLoc, "Button for add car to model compare page");
     }
 
     public void clickOnAddAnotherCar() {
@@ -40,7 +41,7 @@ public class ModelComparePage {
     }
 
     private Label getLabelForValue(String name, int number) {
-        return new Label(By.xpath(String.format(patternForValues, name, number)));
+        return new Label(By.xpath(String.format(PATTERN_FOR_VALUES, name, number)), String.format("Label with %s for car", name));
     }
 
     public String getValueForCar(String name, int number) {
