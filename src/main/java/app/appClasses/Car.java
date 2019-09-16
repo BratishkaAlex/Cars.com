@@ -52,7 +52,7 @@ public class Car {
             return false;
         }
         Car car = (Car) o;
-        return getFullName().equals(car.getFullName()) &&
+        return fullName.equals(car.getFullName()) &&
             (car.engine.contains(engine) || engine.contains(car.engine)) &&
             (car.transmission.contains(transmission) || transmission.contains(car.transmission));
     }
