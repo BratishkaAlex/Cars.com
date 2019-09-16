@@ -119,6 +119,7 @@ public class CarsComTest {
         readFirstCar.setTransmission(modelComparePage.getValueForCar(TRANSMISSION, 1));
         readSecondCar.setTransmission(modelComparePage.getValueForCar(TRANSMISSION, 2));
         step("Compare Car 1 and Car 2 Engine and Transmission values with the values saved", counter++);
+        LOGGER.info("Checking values on the page “Model Compare” equals to the saved values");
         assertEquals(firstCar, readFirstCar, "Parameters for first chosen car and read first car are not the same");
         assertEquals(secondCar, readSecondCar, "Parameters for second chosen car and read second car are not the same");
     }
