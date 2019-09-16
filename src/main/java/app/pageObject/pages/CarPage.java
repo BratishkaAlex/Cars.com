@@ -18,21 +18,23 @@ public class CarPage {
     public boolean isChosenCar(Car car) {
         String label = getLabelForCar().getText().toLowerCase();
         return (label.contains(car.getMake().toLowerCase()) && label.contains(car.getModel().toLowerCase())
-                && label.contains(car.getYear().toLowerCase()));
+            && label.contains(car.getYear().toLowerCase()));
     }
 
     private Link getCompareTrimsLink() {
-        Link linkToCompareTrims;
-        try {
-            Waiter.waitForClickAble(compareTrimsLinkLoc);
-            linkToCompareTrims = new Link(compareTrimsLinkLoc, "Link to compare trims page");
-        } catch (NoSuchElementException e) {
-            throw new IllegalStateException("There is no compare trims link");
-        }
-        return linkToCompareTrims;
+        Waiter.waitForClickAble(compareTrimsLinkLoc);
+        return new Link(compareTrimsLinkLoc, "Link to compare trims page");
     }
 
     public void clickOnCompareTrims() {
         getCompareTrimsLink().click();
+    }
+
+    public boolean isDisplayedCompareTrimsLink() {
+        try {
+            return getCompareTrimsLink().isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
     }
 }

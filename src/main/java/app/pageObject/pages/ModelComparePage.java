@@ -9,12 +9,12 @@ import org.openqa.selenium.By;
 
 public class ModelComparePage {
     private final String PATTERN_FOR_CARS = "//h4[contains(text(), '%s')]";
-    private final String PATTERN_FOR_FULL_CAR_NAME = "(//h4[@class='listing-name'])[%s]";
+    private final String PATTERN_FOR_FULL_CAR_NAME = "(//h4[@class='listing-name'])[%d]";
     private final String PATTERN_FOR_VALUES = "(//cars-compare-compare-info[@header = '%s']//div[@ng-switch-when='simple-list'])[%d]";
-    private SideBySideCompareMenu sideBySideCompareMenu;
-    private By addCarBtnLoc = By.cssSelector(".add-car-icon");
     private final String ENGINE = "Engine";
     private final String TRANSMISSION = "Transmission";
+    private SideBySideCompareMenu sideBySideCompareMenu;
+    private By addCarBtnLoc = By.cssSelector(".add-car-icon");
 
 
     public ModelComparePage() {
@@ -31,7 +31,7 @@ public class ModelComparePage {
     }
 
     private Label getLabelForCar(int number) {
-        return new Label(By.xpath(String.format(PATTERN_FOR_FULL_CAR_NAME, number)), "Label with fullname of first car");
+        return new Label(By.xpath(String.format(PATTERN_FOR_FULL_CAR_NAME, number)), "Label with fullName of car");
     }
 
     public String getFullNameOfCar(int number) {

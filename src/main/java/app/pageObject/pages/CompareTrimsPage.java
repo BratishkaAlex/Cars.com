@@ -26,7 +26,7 @@ public class CompareTrimsPage {
     public boolean isCompareTrimsPage(Car car) {
         String title = new Label(trimPageTitleLoc, "Label for compare trims page").getText().toLowerCase();
         return (title.contains(car.getMake().toLowerCase()) && title.contains(car.getModel().toLowerCase())
-                && title.contains(car.getYear().toLowerCase()) && title.contains("trim"));
+            && title.contains(car.getYear().toLowerCase()) && title.contains("trim"));
     }
 
     private Label getRow(By loc, String rowsName) {

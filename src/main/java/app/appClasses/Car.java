@@ -45,12 +45,16 @@ public class Car {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Car car = (Car) o;
         return getFullName().equals(car.getFullName()) &&
-                (car.engine.contains(engine) || engine.contains(car.engine)) &&
-                (car.transmission.contains(transmission) || transmission.contains(car.transmission));
+            (car.engine.contains(engine) || engine.contains(car.engine)) &&
+            (car.transmission.contains(transmission) || transmission.contains(car.transmission));
     }
 
     public String getFullName() {

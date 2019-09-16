@@ -16,8 +16,8 @@ import static org.testng.Assert.assertTrue;
 
 public class CarsComTest extends BaseTest {
 
-    private int counter = 1;
     private final int COUNT_OF_TRYING = 3;
+    private int counter = 1;
 
     @Test
     public void testCase() {
@@ -25,6 +25,7 @@ public class CarsComTest extends BaseTest {
         Browser.enterUrl(PropertyManager.getConfigProperty("url"));
 
         Car firstCar = CommonStep.getCar("First", counter, COUNT_OF_TRYING);
+        counter = 6;
         step("Navigate to the main page", counter++);
         new CompareTrimsPage().getNavigationMenu().navigateToMainPage();
 
