@@ -34,7 +34,7 @@ public class ModelComparePage {
         return new Label(By.xpath(String.format(PATTERN_FOR_FULL_CAR_NAME, number)), "Label with fullName of car");
     }
 
-    public String getFullNameOfCar(int number) {
+    private String getFullNameOfCar(int number) {
         return getLabelForCar(number).getText();
     }
 
@@ -57,7 +57,7 @@ public class ModelComparePage {
         return new Label(By.xpath(String.format(PATTERN_FOR_VALUES, name, number)), String.format("Label with %s for car", name));
     }
 
-    public String getValueForCar(String name, int number) {
+    private String getValueForCar(String name, int number) {
         return getLabelForValue(name, number).getText();
     }
 }
